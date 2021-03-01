@@ -24,18 +24,23 @@ node {
     }
 
     withCredentials([file(credentialsId: JWT_KEY_CRED_ID, variable: 'jwt_key_file')]) {
-        stage('Deploye Code') {
+        
+        stage('Authorize Dev Hub') {
             if (isUnix()) {
                 rc = sh returnStatus: true, script: "${toolbelt}/sfdx force:auth:jwt:grant --clientid ${CONNECTED_APP_CONSUMER_KEY} --username ${HUB_ORG} --jwtkeyfile ${jwt_key_file} --setdefaultdevhubusername --instanceurl ${SFDC_HOST}"
             }else{
-                 rc = bat returnStatus: true, script: "\"${toolbelt}/sfdx\" auth:jwt:grant --clientid ${CONNECTED_APP_CONSUMER_KEY} --username ${HUB_ORG} --jwtkeyfile \"${jwt_key_file}\" --setdefaultdevhubusername --instanceurl ${SFDC_HOST}"
+                 rc = bat returnStatus: true, script: "\"${toolbelt}/sfdx\" force:auth:jwt:grant --clientid ${CONNECTED_APP_CONSUMER_KEY} --username ${HUB_ORG} --jwtkeyfile \"${jwt_key_file}\" --setdefaultdevhubusername --instanceurl ${SFDC_HOST}"
             }
             if (rc != 0) { error 'hub org authorization failed' }
 
 			println rc
             println('Deploying code to the Org from Repository')
-			
-			// Deploy code
+	
+           
+        }
+
+        Stage('Deploye Code'){
+            // Deploy code
 			if (isUnix()) {
 				rmsg = sh returnStdout: true, script: "${toolbelt}/sfdx force:source:deploy -p force-app/. -u ${HUB_ORG}"
 			}else{
@@ -46,7 +51,10 @@ node {
             println('Check deployment status')
             println(rmsg)
 
-            //Check status
+        }
+
+        Stage('Check Deployment Status'){
+             //Check status
             if (isUnix()) {
 				rmsg1 = sh returnStdout: true, script: "${toolbelt}/sfdx force:mdapi:deploy:report -u ${HUB_ORG}"
 			}else{
@@ -55,6 +63,7 @@ node {
 
             println('Deployment report is -- ')
             println(rmsg1)
+
         }
     }
 }

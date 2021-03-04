@@ -3,8 +3,7 @@ name: 'sfdx'
 #on: [push]
 on: 
   push: 
-    branches:
-      - [staging]
+    branches: [staging]
 
 jobs:
   build:

@@ -20,4 +20,4 @@ jobs:
       - name: Auth with the DevHub
         run: 'sfdx force:auth:sfdxurl:store -f token.txt -a DevHub -d'
       - name: 'Deploy'
-        run: "sfdx force:source:deploy --sourcepath ./force-app/main/default -l RunLocalTests -u anupam.tripathi@cunning-shark-k1xl4p.com"
+        run: "sfdx force:source:deploy --sourcepath ./force-app/main/default -u anupam.tripathi@cunning-shark-k1xl4p.com"

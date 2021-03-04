@@ -23,4 +23,8 @@ jobs:
         run: 'sfdx force:source:deploy --sourcepath ./force-app/main/default -u anupam.tripathi@cunning-shark-k1xl4p.com'
       - name : 'Create Scratch Org'
         run: 'sfdx force:org:create -f config/project-scratch-def.json -a my-scratch'
+      - name: 'Push Code to Scratch Org'
+        run: 'sfdx force:source:push -u my-scratch'
+      - name: 'Delete Scratch Org'
+        run: 'sfdx force:org:delete -u my-scratch --noprompt'
         

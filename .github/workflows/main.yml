@@ -25,6 +25,8 @@ jobs:
         run: 'sfdx force:org:create -f config/project-scratch-def.json -a my-scratch'
       - name: 'Push Code to Scratch Org'
         run: 'sfdx force:source:push -u my-scratch'
+      - name: 'List all Orgs'
+        run: 'sfdx force:org:list'
       - name: 'Delete Scratch Org'
         run: 'sfdx force:org:delete -u my-scratch --noprompt'
         

@@ -1,6 +1,9 @@
 name: 'sfdx'
 
-on: [push]
+#on: [push]
+on: 
+  push: 
+    branches: [staging]
 
 jobs:
   build:
@@ -9,7 +12,7 @@ jobs:
 
     steps:
       - name: 'Checkout Master'
-        uses: actions/checkout@main              
+        uses: actions/checkout@v2              
       - name: Write the token into a file
         run: 'echo ${{ secrets.DEVHUB_TOKEN}} > token.txt'
       - name: Install Salesforce CLI

@@ -1,8 +1,7 @@
 name: 'sfdx'
 
 #on: [push]
-on: 
-  push: [staging]
+on: [push]: [staging]
 
 jobs:
   build:

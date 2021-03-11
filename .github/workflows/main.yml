@@ -21,8 +21,13 @@ jobs:
           mkdir sfdx-cli
           tar xJf sfdx-linux-amd64.tar.xz -C sfdx-cli --strip-components 1
           ./sfdx-cli/install
-      - name: Auth with the DevHub
-        run: 'sfdx force:auth:sfdxurl:store -f token.txt -a DevHub -d'
+      - name: 'Auth with the DevHub'
+        #run: 'sfdx force:auth:sfdxurl:store -f token.txt -a DevHub -d'
+        run: |
+            echo "${SALESFORCE_JWT_SECRET_KEY}" > server.key
+            sfdx force:auth:jwt:grant --clientid ${{ secrets.SALESFORCE_CONSUMER_KEY }} --jwtkeyfile server.key --username ${{ secrets.SALESFORCE_DEVHUB_USERNAME}} --setdefaultdevhubusername -a devhub
+        env: 
+            SALESFORCE_JWT_SECRET_KEY: ${{ secrets.SALESFORCE_JWT_SECRET_KEY }}
       - name: 'Deploy'
         run: 'sfdx force:source:deploy --sourcepath ./force-app/main/default -u anupam.tripathi@cunning-shark-k1xl4p.com'
       - name : 'Create Scratch Org'

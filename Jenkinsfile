@@ -39,6 +39,10 @@ node {
            
         }
 
+        stage('List Org'){
+            rmsg = bat returnStdout: true, script: "\"${toolbelt}/sfdx\" force:org:list"
+        }
+
         stage('Deploye Code'){
             // Deploy code
             println('Deploying code to the Org from Repository')

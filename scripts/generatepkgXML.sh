@@ -26,5 +26,7 @@ cp -a ./mdapipkg/package.xml ./manifest/ # Copy package.XML to manifest director
 rm -rf ./mdapipkg # Delete the mdapipkg source
 
 echo ===============Retrieve package from source ============
-sfdx force:source:retrieve --manifest
+sfdx force:source:retrieve -x manifest/package.xml
+
+echo ===============Thank you=============
 

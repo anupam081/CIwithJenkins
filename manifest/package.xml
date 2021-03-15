@@ -5,6 +5,7 @@
         <members>Account.Active__c</members>
         <members>Account.CustomerPriority__c</members>
         <members>Account.NumberofLocations__c</members>
+        <members>Case.EngineeringReqNumber__c</members>
         <name>CustomField</name>
     </types>
     <version>48.0</version>

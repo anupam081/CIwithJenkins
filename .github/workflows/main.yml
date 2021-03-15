@@ -29,8 +29,8 @@ jobs:
         env: 
             SALESFORCE_JWT_SECRET_KEY: ${{ secrets.SALESFORCE_JWT_SECRET_KEY }}
       - name: 'Deploy'
-        #run: 'sfdx force:source:deploy --sourcepath ./force-app/main/default -u anupam.tripathi@cunning-shark-k1xl4p.com'
-        run: 'sfdx force:mdapi:deploy -d manifest/ -u ${{ secrets.SALESFORCE_DEVHUB_USERNAME}} -w 1' 
+        run: 'sfdx force:source:deploy --x ./manifest/package.xml -u anupam.tripathi@cunning-shark-k1xl4p.com'
+        #run: 'sfdx force:mdapi:deploy -d manifest/ -u ${{ secrets.SALESFORCE_DEVHUB_USERNAME}} -w 1' 
       - name : 'Create Scratch Org'
         run: 'sfdx force:org:create -f config/project-scratch-def.json -a my-scratch'
       - name: 'Push Code to Scratch Org'

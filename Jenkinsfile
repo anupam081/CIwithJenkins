@@ -28,13 +28,13 @@ node {
 
         stage('Authorize Dev Hub') {
 
-            rccc = bat returnStdout: true, script: "sfdx auth:logout -u ${HUB_ORG} -p"
+            rccc = bat returnStatus: true, script: "sfdx auth:logout -u ${HUB_ORG} -p"
             if (rccc != 0) { error 'Log out failed' }
 
             if (isUnix()) {
-                rc = sh returnStdout: true, script: "${toolbelt}/sfdx force:auth:jwt:grant --clientid ${CONNECTED_APP_CONSUMER_KEY} --username ${HUB_ORG} --jwtkeyfile ${jwt_key_file} --setdefaultdevhubusername --instanceurl ${SFDC_HOST}"
+                rc = sh returnStatus: true, script: "${toolbelt}/sfdx force:auth:jwt:grant --clientid ${CONNECTED_APP_CONSUMER_KEY} --username ${HUB_ORG} --jwtkeyfile ${jwt_key_file} --setdefaultdevhubusername --instanceurl ${SFDC_HOST}"
             }else{
-                 rc = bat returnStdout: true, script: "sfdx auth:jwt:grant --clientid ${CONNECTED_APP_CONSUMER_KEY} --username ${HUB_ORG} --jwtkeyfile \"${jwt_key_file}\" --setdefaultdevhubusername --instanceurl ${SFDC_HOST}"
+                 rc = bat returnStatus: true, script: "sfdx auth:jwt:grant --clientid ${CONNECTED_APP_CONSUMER_KEY} --username ${HUB_ORG} --jwtkeyfile \"${jwt_key_file}\" --setdefaultdevhubusername --instanceurl ${SFDC_HOST}"
             }
             if (rc != 0) { error 'hub org authorization failed' }
 
@@ -44,7 +44,7 @@ node {
         }
 
         stage('List Org'){
-            rcc = bat returnStdout: true, script: "\"${toolbelt}/sfdx\" force:org:list"
+            rcc = bat returnStatus: true, script: "\"${toolbelt}/sfdx\" force:org:list"
              if (rcc != 0) { error 'Org List failed' }
         }
 

@@ -28,7 +28,7 @@ node {
 
         stage('Authorize Dev Hub') {
 
-            rccc = bat returnStdout: true, script: "sfdx force:auth:logout -u ${HUB_ORG} -p"
+            rccc = bat returnStdout: true, script: "sfdx auth:logout -u ${HUB_ORG} -p"
             if (rccc != 0) { error 'Log out failed' }
 
             if (isUnix()) {

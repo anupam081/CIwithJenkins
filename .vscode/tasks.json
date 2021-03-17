@@ -15,8 +15,22 @@
                 "panel": "shared"
             },
             "problemMatcher": []
+        },
+        {
+            "label": "SFDX: Org List",
+            "type": "shell",
+            "command": "sfdx",
+            "args": [
+                "force:org:list"          
+            ],
+            "group": "build",
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            },
+            "problemMatcher": []   
         }
-    ],
+    ],    
     "inputs": [
         {
             "id": "UserName",

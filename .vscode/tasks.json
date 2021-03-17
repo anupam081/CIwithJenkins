@@ -1,0 +1,32 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "SFDX: Retrieve Metadata From Package",
+            "type": "shell",
+            "command": "./scripts/generatepkgXML.sh",
+            "args": [
+                "${input:UserName}",                
+                "${input:packagename}"
+            ],
+            "group": "build",
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            },
+            "problemMatcher": []
+        }
+    ],
+    "inputs": [
+        {
+            "id": "UserName",
+            "description": "Enter UserName:",
+            "type": "promptString"
+        },
+        {
+            "id": "packagename",
+            "description": "Enter Package Name:",
+            "type": "promptString"
+        },
+    ]
+}

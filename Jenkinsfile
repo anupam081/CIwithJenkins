@@ -27,12 +27,12 @@ node {
         
 
         stage('Authorize Dev Hub') {
-
+            /*
             rccc = bat returnStatus: true, script: "sfdx auth:logout -u ${HUB_ORG} -p"
             if (rccc != 0) { error 'Log out failed' }
-
+            */
             if (isUnix()) {
-                rc = sh returnStatus: true, script: "${toolbelt}/sfdx force:auth:jwt:grant --clientid ${CONNECTED_APP_CONSUMER_KEY} --username ${HUB_ORG} --jwtkeyfile ${jwt_key_file} --setdefaultdevhubusername --instanceurl ${SFDC_HOST}"
+                rc = sh returnStatus: true, script: "${toolbelt}/sfdx force:auth:jwt:grant --clientid C:\OpenSSL\bin\server.key --username ${HUB_ORG} --jwtkeyfile ${jwt_key_file} --setdefaultdevhubusername --instanceurl ${SFDC_HOST}"
             }else{
                  rc = bat returnStatus: true, script: "sfdx auth:jwt:grant --clientid ${CONNECTED_APP_CONSUMER_KEY} --username ${HUB_ORG} --jwtkeyfile \"${jwt_key_file}\" --setdefaultdevhubusername --instanceurl ${SFDC_HOST}"
             }

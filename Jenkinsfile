@@ -32,8 +32,8 @@ node {
             if (rccc != 0) { error 'Log out failed' }
             */
 
-            rct = bat returnStatus: true, script: "sfdx -version"
-            
+            rct = bat returnStatus: true, script: "sfdx --version"
+
             if (isUnix()) {
                 rc = sh returnStatus: true, script: "${toolbelt}/sfdx force:auth:jwt:grant --clientid ${CONNECTED_APP_CONSUMER_KEY} --username ${HUB_ORG} --jwtkeyfile ${jwt_key_file} --setdefaultdevhubusername --instanceurl ${SFDC_HOST}"
             }else{

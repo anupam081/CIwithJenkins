@@ -1,0 +1,5 @@
+<apex:page>
+<!-- Begin Default Content REMOVE THIS -->
+    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
+    <c:modalpopup/>
+</apex:page>

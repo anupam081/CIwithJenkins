@@ -6,7 +6,34 @@ const DELAY = 300;
 
 export default class ShowContacts extends LightningElement {
     searchKey = '';
-    @wire(getContactList, { searchKey: '$searchKey' }) contacts;
+    contacts;
+    error;
+    /*
+    //@wire(getContactList, { searchKey: '$searchKey' }) contacts;
+    @wire(getContactList, { searchKey: '$searchKey' }) 
+    wiredContacts({ error, data }) {
+        if (data) {
+            this.contacts = data;
+            this.error = undefined;
+        } else if (error) {
+            this.error = error;
+            this.contacts = undefined;
+        }
+    }
+    */
+
+    handleSearch() {
+        getContactList({searchKey: this.searchKey})
+            .then((result) => {
+                this.contacts = result;
+                this.error = undefined;
+            })
+            .catch((error) => {
+                this.error = error;
+                this.contacts = undefined;
+            });
+    
+    }
 
     handleKeyChange(event) {
         // Debouncing this method: Do not update the reactive property as long as this function is
@@ -15,6 +42,6 @@ export default class ShowContacts extends LightningElement {
         const searchKey = event.target.value;
         this.delayTimeout = setTimeout(() => {
             this.searchKey = searchKey;
-        }, DELAY);
+        }, DELAY);     
     }
 }

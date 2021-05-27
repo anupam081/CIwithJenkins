@@ -9,7 +9,7 @@
             <assignToReference>DoNothing</assignToReference>
             <operator>Assign</operator>
             <value>
-                <stringValue/>
+                <stringValue></stringValue>
             </value>
         </assignmentItems>
     </assignments>

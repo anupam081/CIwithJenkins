@@ -2,11 +2,11 @@
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>recordflowpkg</fullName>
     <types>
-        <members>Create_task_on_Opportunity</members>
+        <members>Create_task_on_Opportunity-7</members>
         <name>Flow</name>
     </types>
     <types>
-    <members>Create_task_on_Opportunity-7</members>
+    <members>Create_task_on_Opportunity</members>
     <name>FlowDefinition</name>
   </types>
     <version>48.0</version>

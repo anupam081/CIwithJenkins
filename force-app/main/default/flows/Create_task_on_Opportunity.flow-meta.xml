@@ -54,8 +54,8 @@
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordCreates>
     <start>
-        <locationX>50</locationX>
-        <locationY>50</locationY>
+        <locationX>43</locationX>
+        <locationY>45</locationY>
         <object>Opportunity</object>
         <recordTriggerType>Create</recordTriggerType>
         <triggerType>RecordAfterSave</triggerType>

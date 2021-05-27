@@ -4,10 +4,6 @@
     <types>
         <members>Create_task_on_Opportunity</members>
         <name>Flow</name>
-    </types>
-    <types>
-    <members>Create_task_on_Opportunity-7</members>
-    <name>FlowDefinition</name>
-  </types>
+    </types>   
     <version>48.0</version>
 </Package>

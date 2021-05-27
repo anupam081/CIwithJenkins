@@ -1,5 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <assignments>
+        <name>nothing</name>
+        <label>nothing</label>
+        <locationX>167</locationX>
+        <locationY>372</locationY>
+        <assignmentItems>
+            <assignToReference>DoNothing</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue/>
+            </value>
+        </assignmentItems>
+    </assignments>
     <interviewLabel>Create task on Opportunity {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Create task on Opportunity</label>
     <processMetadataValues>
@@ -56,9 +69,19 @@
     <start>
         <locationX>43</locationX>
         <locationY>45</locationY>
+        <connector>
+            <targetReference>nothing</targetReference>
+        </connector>
         <object>Opportunity</object>
         <recordTriggerType>Create</recordTriggerType>
         <triggerType>RecordAfterSave</triggerType>
     </start>
     <status>Active</status>
+    <variables>
+        <name>DoNothing</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
 </Flow>

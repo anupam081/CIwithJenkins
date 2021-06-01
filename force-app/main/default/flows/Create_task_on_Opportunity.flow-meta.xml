@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
-    <apiVersion>51.0</apiVersion>
     <assignments>
         <name>nothing</name>
         <label>nothing</label>
@@ -10,7 +9,7 @@
             <assignToReference>DoNothing</assignToReference>
             <operator>Assign</operator>
             <value>
-                <stringValue></stringValue>
+                <stringValue/>
             </value>
         </assignmentItems>
     </assignments>

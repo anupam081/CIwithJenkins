@@ -17,6 +17,7 @@ node {
     println HUB_ORG
     println SFDC_HOST
     println CONNECTED_APP_CONSUMER_KEY
+    println 'SFDX path is == '
     println SFDX_PATH
    //def toolbelt = tool 'toolbelt'
 

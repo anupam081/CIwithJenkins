@@ -10,12 +10,14 @@ node {
     def SFDC_HOST = env.SFDC_HOST_DH
     def JWT_KEY_CRED_ID = env.JWT_CRED_ID_DH
     def CONNECTED_APP_CONSUMER_KEY=env.CONNECTED_APP_CONSUMER_KEY_DH
+    def SFDX_PATH = env.SFDX_PATH
 
     println 'KEY IS' 
     println JWT_KEY_CRED_ID
     println HUB_ORG
     println SFDC_HOST
     println CONNECTED_APP_CONSUMER_KEY
+    println SFDX_PATH
     def toolbelt = tool 'toolbelt'
 
     stage('checkout source') {
@@ -34,14 +36,14 @@ node {
                 */
 
                 //rct1 = bat returnStatus: true, script: "sfdx update"
-                rct1 = bat returnStatus: true, script: "sfdx plugins --core"
+                rct1 = bat returnStatus: true, script: "\"${SFDX_PATH}/sfdx\" plugins --core"
                 //rct = bat returnStatus: true, script: "\"${toolbelt}/sfdx\" plugins --core"
                 
 
                 if (isUnix()) {
-                    rc = sh returnStatus: true, script: "${toolbelt}/sfdx force:auth:jwt:grant --clientid ${CONNECTED_APP_CONSUMER_KEY} --username ${HUB_ORG} --jwtkeyfile ${jwt_key_file} --setdefaultdevhubusername --instanceurl ${SFDC_HOST}"
+                    rc = sh returnStatus: true, script: "${SFDX_PATH}/sfdx force:auth:jwt:grant --clientid ${CONNECTED_APP_CONSUMER_KEY} --username ${HUB_ORG} --jwtkeyfile ${jwt_key_file} --setdefaultdevhubusername --instanceurl ${SFDC_HOST}"
                 }else{
-                    rc = bat returnStatus: true, script: "\"${toolbelt}/sfdx\" auth:jwt:grant --clientid ${CONNECTED_APP_CONSUMER_KEY} --username ${HUB_ORG} --jwtkeyfile \"${jwt_key_file}\" --setdefaultdevhubusername --instanceurl ${SFDC_HOST}"
+                    rc = bat returnStatus: true, script: "\"${SFDX_PATH}/sfdx\" auth:jwt:grant --clientid ${CONNECTED_APP_CONSUMER_KEY} --username ${HUB_ORG} --jwtkeyfile \"${jwt_key_file}\" --setdefaultdevhubusername --instanceurl ${SFDC_HOST}"
                 }
                 if (rc != 0) { error 'hub org authorization failed' }
 

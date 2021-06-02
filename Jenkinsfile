@@ -18,7 +18,7 @@ node {
     println SFDC_HOST
     println CONNECTED_APP_CONSUMER_KEY
     println SFDX_PATH
-    def toolbelt = tool 'toolbelt'
+   //def toolbelt = tool 'toolbelt'
 
     stage('checkout source') {
         // when running in multi-branch job, one must issue this command
@@ -53,7 +53,7 @@ node {
             }
 
             stage('List Org'){
-                rcc = bat returnStatus: true, script: "\"${toolbelt}/sfdx\" force:org:list"
+                rcc = bat returnStatus: true, script: "\"${SFDX_PATH}/sfdx\" force:org:list"
                 if (rcc != 0) { error 'Org List failed' }
             }
 
@@ -61,9 +61,9 @@ node {
                 // Deploy code
                 println('Deploying code to the Org from Repository')
                 if (isUnix()) {
-                    rmsg = sh returnStdout: true, script: "${toolbelt}/sfdx force:source:deploy -p force-app/. -u ${HUB_ORG}"
+                    rmsg = sh returnStdout: true, script: "${SFDX_PATH}/sfdx force:source:deploy -p force-app/. -u ${HUB_ORG}"
                 }else{
-                rmsg = bat returnStdout: true, script: "\"${toolbelt}/sfdx\" force:source:deploy -p force-app/. -u ${HUB_ORG}"
+                rmsg = bat returnStdout: true, script: "\"${SFDX_PATH}/sfdx\" force:source:deploy -p force-app/. -u ${HUB_ORG}"
                 }
                 
                 printf rmsg
@@ -75,9 +75,9 @@ node {
             stage('Check Deployment Status'){
                 //Check status
                 if (isUnix()) {
-                    rmsg1 = sh returnStdout: true, script: "${toolbelt}/sfdx force:mdapi:deploy:report -u ${HUB_ORG}"
+                    rmsg1 = sh returnStdout: true, script: "${SFDX_PATH}/sfdx force:mdapi:deploy:report -u ${HUB_ORG}"
                 }else{
-                rmsg1 = bat returnStdout: true, script: "\"${toolbelt}/sfdx\" force:mdapi:deploy:report -u ${HUB_ORG}"
+                rmsg1 = bat returnStdout: true, script: "\"${SFDX_PATH}/sfdx\" force:mdapi:deploy:report -u ${HUB_ORG}"
                 }
 
                 println('Deployment report is -- ')

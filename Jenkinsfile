@@ -31,25 +31,15 @@ node {
             
 
             stage('Authorize Dev Hub') {
-                /*
-                rccc = bat returnStatus: true, script: "sfdx auth:logout -u ${HUB_ORG} -p"
-                if (rccc != 0) { error 'Log out failed' }
-                */
 
-                //rct1 = bat returnStatus: true, script: "sfdx update"
-                rct1 = bat returnStatus: true, script: "\"${SFDX_PATH}/sfdx\" plugins --core"
-                //rct = bat returnStatus: true, script: "\"${toolbelt}/sfdx\" plugins --core"
+                //SFDx version
+                rct1 = bat returnStatus: true, script: "\"${SFDX_PATH}/sfdx\" plugins --core"              
                 
-
-                if (isUnix()) {
-                    rc = sh returnStatus: true, script: "${SFDX_PATH}/sfdx force:auth:jwt:grant --clientid ${CONNECTED_APP_CONSUMER_KEY} --username ${HUB_ORG} --jwtkeyfile ${jwt_key_file} --setdefaultdevhubusername --instanceurl ${SFDC_HOST}"
-                }else{
-                    rc = bat returnStatus: true, script: "\"${SFDX_PATH}/sfdx\" auth:jwt:grant --clientid ${CONNECTED_APP_CONSUMER_KEY} --username ${HUB_ORG} --jwtkeyfile \"${jwt_key_file}\" --setdefaultdevhubusername --instanceurl ${SFDC_HOST}"
-                }
+                //JWT Authorization
+                rc = bat returnStatus: true, script: "\"${SFDX_PATH}/sfdx\" auth:jwt:grant --clientid ${CONNECTED_APP_CONSUMER_KEY} --username ${HUB_ORG} --jwtkeyfile \"${jwt_key_file}\" --setdefaultdevhubusername --instanceurl ${SFDC_HOST}"
+                    
                 if (rc != 0) { error 'hub org authorization failed' }
-
-                println rc
-            
+                println rc           
             
             }
 
@@ -61,12 +51,9 @@ node {
             stage('Deploye Code'){
                 // Deploy code
                 println('Deploying code to the Org from Repository')
-                if (isUnix()) {
-                    rmsg = sh returnStdout: true, script: "${SFDX_PATH}/sfdx force:source:deploy -p force-app/. -u ${HUB_ORG}"
-                }else{
-                rmsg = bat returnStdout: true, script: "\"${SFDX_PATH}/sfdx\" force:source:deploy -p force-app/. -u ${HUB_ORG}"
-                }
-                
+              
+                rmsg = bat returnStdout: true, script: "\"${SFDX_PATH}/sfdx\" force:source:deploy -x manifest/package.xml -u ${HUB_ORG}"
+                                
                 printf rmsg
                 println('Check deployment status')
                 println(rmsg)
@@ -74,12 +61,7 @@ node {
             }
 
             stage('Check Deployment Status'){
-                //Check status
-                if (isUnix()) {
-                    rmsg1 = sh returnStdout: true, script: "${SFDX_PATH}/sfdx force:mdapi:deploy:report -u ${HUB_ORG}"
-                }else{
-                rmsg1 = bat returnStdout: true, script: "\"${SFDX_PATH}/sfdx\" force:mdapi:deploy:report -u ${HUB_ORG}"
-                }
+                
 
                 println('Deployment report is -- ')
                 println(rmsg1)

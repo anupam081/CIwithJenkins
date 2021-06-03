@@ -52,7 +52,7 @@ node {
                 // Deploy code
                 println('Deploying code to the Org from Repository')
               
-                rmsg = bat returnStdout: true, script: "\"${SFDX_PATH}/sfdx\" force:source:deploy -x manifest/package.xml -u ${HUB_ORG}"
+                rmsg = bat returnStatus: true, script: "\"${SFDX_PATH}/sfdx\" force:source:deploy -x manifest/package.xml -u ${HUB_ORG}"
                                 
                 printf rmsg
                 println('Check deployment status')
@@ -64,8 +64,7 @@ node {
                 
 
                 println('Deployment report is -- ')
-                println(rmsg1)
-
+                
             }
         }
     }

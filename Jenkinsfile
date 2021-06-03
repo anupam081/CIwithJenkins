@@ -54,7 +54,7 @@ node {
               
                 rmsg = bat returnStatus: true, script: "\"${SFDX_PATH}/sfdx\" force:source:deploy -x manifest/package.xml -u ${HUB_ORG}"
                                 
-                printf rmsg
+                println rmsg
                 println('Check deployment status')
                 println(rmsg)
 

@@ -1,0 +1,38 @@
+<template>
+    <lightning-card title="File Preview In Lightning Web Component">
+        <template if:true={files}>
+            <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+                <thead>
+                    <tr class="slds-text-title_caps">
+                        <th scope="col">
+                            <div title="Key">File Name</div>
+                        </th>
+                        <th scope="col">
+                            <div title="Value">File Extension</div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <template for:each={files} for:item="keyValue">
+                        <tr key={keyValue.Id}>
+                            <th scope="col">
+                                <div>{keyValue.Title}</div>
+                            </th>
+                            <th scope="col">
+                                <div>{keyValue.FileExtension}</div>
+                            </th>
+                            <th scope="col">    
+                                <!-- Using Dataset Property to get ContentDocumentId -->
+                                <lightning-button data-id={keyValue.ContentDocumentId} 
+                                                  label="Preview" 
+                                                  variant="brand" 
+                                                  value="file preview" 
+                                                  onclick={filePreview}></lightning-button>
+                            </th>
+                        </tr>
+                    </template>
+                </tbody>
+            </table>
+        </template>
+    </lightning-card>
+</template>

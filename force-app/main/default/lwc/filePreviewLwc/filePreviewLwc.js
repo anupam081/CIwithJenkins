@@ -8,6 +8,9 @@ import { NavigationMixin } from 'lightning/navigation';
 
 // extends the class to 'NavigationMixin' - for file preivew
 export default class filePreviewLwc extends NavigationMixin(LightningElement) {
+    //variable to hold the record id on the lightning record page
+    
+    
     // reactive variables
     @track files;
 
@@ -17,6 +20,7 @@ export default class filePreviewLwc extends NavigationMixin(LightningElement) {
         if(data) {
             window.console.log('data ===> '+data);
             this.files = data;
+            
         }
         else if(error) {
             window.console.log('error ===> '+JSON.stringify(error));

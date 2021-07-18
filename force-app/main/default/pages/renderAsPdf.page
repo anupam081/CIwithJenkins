@@ -1,0 +1,22 @@
+<apex:page controller="DisplayPDFController" renderAs="pdf"  
+		   applyHtmlTag="false" showHeader="false" cache="true" readOnly="true" applyBodyTag="false">
+    <html>
+        <head>
+            <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+            <style>
+                @page {
+                    size: 6.4in 4.5in;
+                    @bottom-right {
+                    content: "Page " counter(page) " of " counter(pages);
+                    }
+                }
+                .center {
+                    margin: auto;
+                    width: 60%;
+                    padding: 20px;
+                }         
+            </style>
+        </head>
+        <apex:outputText value = "{!displayText}" escape = "false"/>
+    </html>
+</apex:page>

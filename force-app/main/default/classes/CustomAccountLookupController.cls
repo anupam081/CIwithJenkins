@@ -27,8 +27,9 @@ public with sharing class CustomAccountLookupController {
     private List<Account> performSearch(string searchString) {
   
       String soql = 'select id, name from account';
-      if(searchString != '' && searchString != null)
-        soql = soql +  ' where name LIKE \'%' + searchString +'%\'';
+      if(searchString != '' && searchString != null){
+        soql = soql +  ' where name LIKE \'%' + String.escapeSingleQuotes(searchString) +'%\'';
+      }
       soql = soql + ' limit 25';
       System.debug(soql);
       return database.query(soql); 

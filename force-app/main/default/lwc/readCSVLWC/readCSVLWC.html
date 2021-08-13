@@ -1,0 +1,45 @@
+<template>
+    <lightning-card icon-name="custom:custom19" title='CSV File Read'>
+        
+        <!-- process uploaded file in apex-->
+        <div style="margin-left: 3%">
+            <lightning-file-upload accept={acceptedCSVFormats} 
+                                   label="Attach receipt through apex" 
+                                   multiple="multiple" 
+                                   onuploadfinished={uploadFileHandler} 
+                                   record-id={recordId}></lightning-file-upload>
+        </div>
+
+        <!-- process uploaded file in JS-->
+        <div class="slds-form-element" style="margin-left: 3%">
+
+            <div class="slds-form-element">
+                <lightning-input type="file"
+                                label="Choose File (in LWC)"
+                                accept={acceptedCSVFormats}
+                                onchange={importcsv}
+                                multiple>
+                </lightning-input>
+            </div>  
+
+            <div class="slds-form-element slds-text-body_small slds-text-color_error">{filename}</div>
+
+            <div class="slds-form-element">
+                <lightning-button label="Import" title="Non-primary action" onclick={readFiles} class="slds-var-m-left_x-small"></lightning-button>
+            </div>
+    </div>
+
+        <div if:true={error}>
+            {error}
+        </div><br/>
+
+        <div if:true={data}>
+            <lightning-datatable columns={columnsAccount} 
+                                 data={data} 
+                                 hide-checkbox-column="true" 
+                                 key-field="id"></lightning-datatable>
+        </div>
+
+    </lightning-card>
+    
+</template>

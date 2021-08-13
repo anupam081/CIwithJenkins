@@ -1,0 +1,26 @@
+<apex:page standardController="Lead" recordSetVar="Leads" extensions="listViewButtonController">
+    <apex:form >
+        <html>
+            <head>
+            </head>
+            <body>
+                <apex:pageMessages />
+                {!filterId}
+                <table>
+                    <tr>
+                        <th>Name</th>
+                    </tr>
+                    <apex:repeat value="{!Leads}" var="o">
+                        <tr>
+                            <td>
+                                <apex:inputField value="{!o.Name}"/>
+                            </td>
+                        </tr>
+                    </apex:repeat> 
+                </table>
+            </body>
+            
+            <apex:commandButton value="Save Changes" action="{!save}"/>
+        </html>
+    </apex:form>
+</apex:page>

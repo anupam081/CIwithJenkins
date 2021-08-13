@@ -1,0 +1,69 @@
+<aura:component controller="AuraController" Implements="flexipage:availableForAllPageTypes,force:appHostable,flexipage:availableForRecordHome,force:hasRecordId">
+	<aura:attribute name="accountList" type="Account[]"/>
+    
+    <lightning:card>
+        <div class="slds-m-around--xx-large">
+            <div class="slds-float_right slds-p-bottom_small">
+                <h1 class="slds-page-header__title">Add Row 
+                    <lightning:buttonIcon iconName="utility:add"  size="large" variant="bare" alternativeText="Add" onclick="{!c.addRow}"/>
+                </h1>
+            </div>
+            <div class="container-fluid">        
+                <table class="slds-table slds-table_bordered slds-table_cell-buffer"> 
+                    <thead>
+                        <tr class="slds-text-title_caps">
+                            <th scope="col">
+                                <div class="slds-truncate">Sr. No</div>
+                            </th>
+                            <th scope="col">
+                                <div class="slds-truncate" title="Account Name">Account Name</div>
+                            </th>
+                            <th scope="col">
+                                <div class="slds-truncate" title="Phone">Phone</div>
+                            </th>
+                            <th scope="col">
+                                <div class="slds-truncate" title="Fax">Fax</div>
+                            </th>  
+                            <th scope="col">
+                                <div class="slds-truncate" title="Website">Website</div>
+                            </th>  
+                            <th scope="col">
+                                <div class="slds-truncate" title="Action">Action</div>
+                            </th>
+                        </tr>
+                    </thead>   
+                    <tbody>      
+                        <aura:iteration items="{!v.accountList}" var="acc" indexVar="index">
+                            <tr>
+                                <td> 
+                                    {!index + 1}
+                                </td>
+                                <td>
+                                    <lightning:input name="accName" type="text" maxlength="50" value="{!acc.Name}" />
+                                </td>
+                                <td>
+                                    <lightning:input name="accPhone" type="phone" maxlength="10" value="{!acc.Phone}" />
+                                </td>
+                                <td>
+                                    <lightning:input name="accFax" type="text" value="{!acc.Fax}" />
+                                </td>
+                                <td>
+                                    <lightning:input name="accWebsite" type="text" value="{!acc.Website}" />
+                                </td>
+                                <td>
+                                    <a onclick="{!c.removeRecord}" data-record="{!index}">
+                                        <lightning:icon iconName="utility:delete" size="small" alternativeText="Delete"/>
+                                        <span class="slds-assistive-text">Delete</span>
+                                    </a>
+                                </td> 
+                            </tr>
+                        </aura:iteration>
+                    </tbody>
+                </table>
+                <div class="slds-align_absolute-center slds-p-top_small">
+                    <lightning:button variant="brand" label="Submit" title="Brand action" onclick="{!c.saveAccounts}" />
+                </div>
+            </div>
+        </div>
+    </lightning:card>
+</aura:component>

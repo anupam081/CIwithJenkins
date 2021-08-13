@@ -1,0 +1,6 @@
+Name,AccountSource,Site,Type,Website
+Account 1,Web,Site 1,Prospect,www.xyz.com1
+Account 2,"	Phone Inquiry",Site 2,Customer - Direct,www.xyz.com1
+Account 3,Partner Referral,Site 3,Customer - Channel,www.xyz.com1
+Account 4,Purchased List,Site 4,Channel Partner / Reseller,www.xyz.com1
+Account 5,Other,Site 5,Installation Partner,www.xyz.com1

@@ -3,7 +3,13 @@
     <apiVersion>52.0</apiVersion>
     <isExposed>true</isExposed>
     <targets>
+        <target>lightning__AppPage</target>
         <target>lightning__RecordPage</target>
-        <target>lightning__RecordAction</target>
+        <target>lightning__HomePage</target>
     </targets>
+    <targetConfigs>
+        <targetConfig targets="lightning__RecordPage">
+            <property name="tilelabel" type="String"/>            
+        </targetConfig>
+    </targetConfigs>    
 </LightningComponentBundle>

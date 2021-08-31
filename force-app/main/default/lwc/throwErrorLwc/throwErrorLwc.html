@@ -1,0 +1,15 @@
+<template>
+    <c-custom-toast-lwc></c-custom-toast-lwc>
+    <lightning-card title="Error Handling in Lightning Web Components">
+		<div slot="actions">
+			<lightning-button label="First Error" onclick={firstError}></lightning-button>
+			<lightning-button label="Second Error" onclick={secondError}></lightning-button>
+			<lightning-button label="Third Error" onclick={thirdError}></lightning-button>
+			<lightning-button label="Fourth Error" onclick={fourthError}></lightning-button>
+			<lightning-button label="Open Modal" onclick={openModal}></lightning-button>
+			 
+			<c-modal-Pop-up-util-lwc modal-heading={modalheading} message={modalmsg} id="modal"></c-modal-Pop-up-util-lwc>
+
+		</div>
+	</lightning-card>    
+</template>

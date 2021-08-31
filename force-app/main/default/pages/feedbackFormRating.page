@@ -1,0 +1,23 @@
+<apex:page standardStylesheets="false" showHeader="false" lightningStylesheets="true" sidebar="false" applyBodyTag="false">
+    <apex:includeLightning />
+    <apex:slds /> 
+
+    <div id="LightningAppDivId" class="slds-scope">
+        <!-- Lightning Web Component will be included here. -->
+    </div>
+
+    <script>
+        var caseid = '{!$CurrentPage.parameters.Id}';
+        //alert('caseid = '+caseid);
+        $Lightning.use(
+            "c:lightningOutApp", // Name of Aura Dependency app where c is namespace.
+            function() { // Callback function
+                $Lightning.createComponent(
+                    "c:feedbackRatingLWC", // Name of Lightning Component where c is namespace.
+                    {strCaseId : caseid}, // attribute parameters
+                    "LightningAppDivId" // Id of the element where Lightning Component will be rendered.
+                );
+            }
+        );
+    </script>
+</apex:page>

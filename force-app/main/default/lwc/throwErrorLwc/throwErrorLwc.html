@@ -8,8 +8,12 @@
 			<lightning-button label="Fourth Error" onclick={fourthError}></lightning-button>
 			<lightning-button label="Open Modal" onclick={openModal}></lightning-button>
 			 
-			<c-modal-Pop-up-util-lwc modal-heading={modalheading} message={modalmsg} id="modal"></c-modal-Pop-up-util-lwc>
-
+			<c-modal-Pop-up-util-lwc modal-heading={modalheading} message={modalmsg} show-modal={showModal} id="modal"></c-modal-Pop-up-util-lwc>		
+			
+			 
+		</div>
+		<div style="slds-col slds-size_2-of-8">
+			<c-generic-data-table-lwc columnvalue={columns} generic-data={accountData}></c-generic-data-table-lwc>
 		</div>
 	</lightning-card>    
 </template>

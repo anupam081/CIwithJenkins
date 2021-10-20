@@ -23,4 +23,18 @@ public with sharing class ErrorParseDemoClass {
         }
         
     }
+
+    @AuraEnabled
+    public static Map<String, String> getAllColumns(){
+        Map<String, String> allColumnMap = new Map<String, String>();
+        allColumnMap.put('Name', 'Account Name');
+        allColumnMap.put('Website', 'Account Website');
+        allColumnMap.put('Phone', 'Account Phone');
+        allColumnMap.put('CreatedDate', 'Account Created on');
+        return allColumnMap;
+    }
+    @AuraEnabled
+    public static List<Account> getAllAccountData(){
+        return [Select Id, Name, Website, Phone, CreatedDate from Account LIMIT 100];
+    }
 }

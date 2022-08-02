@@ -1,0 +1,13 @@
+<!--Sample.cmp-->
+<aura:component  implements="flexipage:availableForAllPageTypes,force:appHostable" access="global">
+    
+    <div class="slds-m-around_xx-large">
+        <lightning:listView aura:id="listViewAccounts"
+                            objectApiName="Account"
+                            listName="DEV_Innovation__AllAccounts"
+                            rows="10"
+                            showActionBar="true"
+                            enableInlineEdit="true"
+                            showRowLevelActions="true"/>
+    </div>
+</aura:component>

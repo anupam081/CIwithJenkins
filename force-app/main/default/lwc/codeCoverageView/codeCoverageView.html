@@ -1,0 +1,27 @@
+<template>
+    <div if:true={isLoading}>
+        <lightning-spinner alternative-text="Loading..."></lightning-spinner>
+    </div>
+    <lightning-card title="Code Coverage View Demo">
+        <div class="slds-box slds-theme_default slds-m-horizontal_xx-small">
+            <div class="slds-grid slds-gutters">
+                <div if:false={isLoading} class="slds-col slds-size_1-of-1 slds-align_absolute-center">
+                    <lightning-button-group>
+                        <lightning-button icon-name="utility:download" label="Download Coverage Data" onclick={downloadAsCsvFile} variant="brand" ></lightning-button>
+                    </lightning-button-group>
+                </div>
+            </div>
+            <div if:true={coverageJSON}>
+                <c-lwc-paginator allrecords={coverageJSON} onpagedataupdate={handleDataUpdate}>
+                </c-lwc-paginator>
+            </div>
+            <div class="slds-grid slds-gutters">
+                <div class="slds-col slds-size_1-of-1">
+                    <div class="chart-container" style={style}> 
+                        <canvas class="barChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </lightning-card>
+</template>
